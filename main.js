@@ -1,14 +1,17 @@
-var ul = document.querySelector("ul");
+"use strict";
+
+const ul = document.querySelector("ul");
 
 // Add new notes with the Add button
 
-document.getElementById("add-btn").addEventListener("click", function(e) {
+document.getElementById("add-btn").addEventListener("click", addNote);
+function addNote(e) {
   e.preventDefault();
 
-  var addInput = document.getElementById("add-input");
+  const addInput = document.getElementById("add-input");
   // Condition to check if input value is not empty string
   if (addInput.value !== "") {
-    var li = document.createElement("li"),
+    const li = document.createElement("li"),
       firstPar = document.createElement("p"),
       secondPar = document.createElement("p"),
       firstIcon = document.createElement("i"),
@@ -30,76 +33,76 @@ document.getElementById("add-btn").addEventListener("click", function(e) {
     ul.appendChild(li);
     addInput.value = "";
   }
-});
+}
 
 // Edit and Delete note
 // Edit note
 
-ul.addEventListener('click', function(e) {
-    if(e.target.classList[1] === 'fa-pencil-square-0') {
+ul.addEventListener("click", editNote);
+function editNote(e) {
+  if (e.target.classList[1] === "fa-pencil-square-o") {
+    const parentPar = e.target.parentNode;
+    // Remove edit and delete button while editing note
+    parentPar.style.display = "none";
 
-        var parentPar = e.target.parentNode;
-        // Remove edit and delete button while editing note
-        parentPar.style.display = 'none';
-        
-        var note = parentPar.previousElementSibling;
-        var input = parentPar.nextElementSibling;
-        // Display input field with available input value while submitting
-        input.style.display = 'block';
-        input.value = note.textContent;
-        
-        // SUbmit onclick on the Enter key on keyboard
-        input.addEventListener('keypress', function(e) {
-            if(e.keyCode === 13) {
-                // Remove note if value is empty
-                if(input.value !== ''){
-                    note.textContent = input.value;
-                    parentPar.style.display = 'block';
-                    input.style.display = 'none';
-                } else {
-                    var li = input.parentNode;
-                    li.parentNode.removeChild(li);
-                }
-            }
-        });
-        // Delete note 
-    } else if(e.target.classList[1] === 'fa-times') {
-        var list = e.target.parentNode.parentNode;
-        list.parentNode.removeChild(list);
+    const note = parentPar.previousElementSibling;
+    const input = parentPar.nextElementSibling;
+    // Display input field with available input value while submitting
+    input.style.display = "block";
+    input.value = note.textContent;
+
+    // Submit onclick on the Enter key on keyboard
+    input.addEventListener("keypress", submitNote);
+    function submitNote(e) {
+      if (e.keyCode === 13) {
+        // Remove note if value is empty
+        if (input.value !== "") {
+          note.textContent = input.value;
+          parentPar.style.display = "block";
+          input.style.display = "none";
+        } else {
+          const li = input.parentNode;
+          li.parentNode.removeChild(li);
+        }
+      }
     }
-});
-
+    // Delete note
+  } else if (e.target.classList[1] === "fa-times") {
+    const list = e.target.parentNode.parentNode;
+    list.parentNode.removeChild(list);
+  }
+}
 
 // Hide and Unhide notes
 
-var hideNote = document.getElementById('hide');
-hideNote.addEventListener('click', function() {
-    var label = document.querySelector('label');
-   if(hideNote.checked) {
-       label.textContent = 'Unhide notes';
-       ul.style.display = 'none';
-   } else {
-       label.textContent = 'Hide notes';
-       ul.style.display = 'block';
-   }
-});
-
+const hideNote = document.getElementById("hide");
+hideNote.addEventListener("click", hideUnhideNotes);
+function hideUnhideNotes() {
+  const label = document.querySelector("label");
+  if (hideNote.checked) {
+    label.textContent = "Unhide notes";
+    ul.style.display = "none";
+  } else {
+    label.textContent = "Hide notes";
+    ul.style.display = "block";
+  }
+}
 
 // Search note
 
-var searchInput = document.querySelector('#search-note input');
-searchInput.addEventListener('keyup' function(e) {
-   
-   var searchChar = e.target.value.toUpperCase();
-   var notes = document.getElementById('li');
-   
-   Array.from(notes).forEach(function(note) {
-       var parText = note.firstElementChild.textContent;
-       
-       if(parText.toUpperCase().indexOf(searchChar) !== -1) {
-           note.style.display = 'block';
-       } else {
-           note.style.display = 'none';
-       }
-   });
-});
+const searchInput = document.querySelector("#search-note input");
+searchInput.addEventListener("keyup", searchNote);
+function searchNote(e) {
+  const searchChar = e.target.value.toUpperCase();
+  const notes = ul.getElementsByTagName("li");
+
+  Array.from(notes).forEach(function(note) {
+    const parText = note.firstElementChild.textContent;
+
+    if (parText.toUpperCase().indexOf(searchChar) !== -1) {
+      note.style.display = "block";
+    } else {
+      note.style.display = "none";
+    }
+  });
+}
