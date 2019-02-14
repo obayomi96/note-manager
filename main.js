@@ -67,3 +67,17 @@ ul.addEventListener('click', function(e) {
         list.parentNode.removeChild(list);
     }
 });
+
+
+// Hide and Unhide notes
+var hideNote = document.getElementById('hide');
+hideNote.addEventListener('click', function() {
+    var label = document.querySelector('label');
+   if(hideNote.checked) {
+       label.textContent = 'Unhide notes';
+       ul.style.display = 'none';
+   } else {
+       label.textContent = 'Hide notes';
+       ul.style.display = 'block'
+   }
+});
