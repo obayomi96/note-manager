@@ -30,3 +30,40 @@ document.getElementById("add-btn").addEventListener("click", function(e) {
     addInput.value = "";
   }
 });
+
+// Edit and Delete note
+// Edit note
+
+ul.addEventListener('click', function(e) {
+    if(e.target.classList[1] === 'fa-pencil-square-0') {
+
+        var parentPar = e.target.parentNode;
+        // Remove edit and delete button while editing note
+        parentPar.style.display = 'none';
+        
+        var note = parentPar.previousElementSibling;
+        var input = parentPar.nextElementSibling;
+        // Display input field with available input value while submitting
+        input.style.display = 'block';
+        input.value = note.textContent;
+        
+        // SUbmit onclick on the Enter key on keyboard
+        input.addEventListener('keypress', function(e) {
+            if(e.keyCode === 13) {
+                // Remove note if value is empty
+                if(input.value !== ''){
+                    note.textContent = input.value;
+                    parentPar.style.display = 'block';
+                    input.style.display = 'none';
+                } else {
+                    var li = input.parentNode;
+                    li.parentNode.removeChild(li);
+                }
+            }
+        });
+        // Delete note 
+    } else if(e.target.classList[1] === 'fa-times') {
+        var list = e.target.parentNode.parentNode;
+        list.parentNode.removeChild(list);
+    }
+});
