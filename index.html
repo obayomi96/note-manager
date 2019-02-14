@@ -1,49 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Note Manager</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stlesheet" integrity="sha384-wvfxpqpZZVQGK6TAh5PVIGOfQNHSoD2xbE+QkPxCAFINEevoEH3SIOsibVcOQVnN" crossorigin="anonymous">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
-    
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stlesheet"
+      integrity="sha384-wvfxpqpZZVQGK6TAh5PVIGOfQNHSoD2xbE+QkPxCAFINEevoEH3SIOsibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="wrapper">
-    <header>
+      <header>
         <h2>Note Manager</h2>
         <form id="search-note">
-            <input type="text" placeholder="Search note...">
+          <input type="text" placeholder="Search note..." />
         </form>
-    </header>
-    <div class="note-list">
-    <ul id="list">
-        <li>
-            <p>First note</p>
+      </header>
+      <div class="note-list">
+        <ul id="list">
+          <li>
+            <p>
+              Edit or delete this note... You can also add a new note below!
+            </p>
             <p id="fonts-wrapper">
-            <i class="fa fa-pencil-square-o"></i><i class="fa fa-times"></i>
-            </p>  
-            <input class="edit-note" type="text">
-        </li>
-        <li>
-            <p>Second note</p>
-            <p><i class="fa fa-pencil-square-o"></i><i class="fa fa-times"></i></p>
-            <input class="edit-note" type="text">
-        </li>
-    </ul>
-    </div>
-    <div id="hide-list">
+              <i class="fa fa-pencil-square-o"></i><i class="fa fa-times"></i>
+            </p>
+            <input class="edit-note" type="text" />
+          </li>
+        </ul>
+      </div>
+      <div id="hide-list">
         <label for="hide">Hide notes</label>
-        <input type="checkbox" id="hide">
-    </div>
-    <div id="add-notes">
+        <input type="checkbox" id="hide" />
+      </div>
+      <div id="add-notes">
         <form id="add">
-            <input type="text" placeholder="Add a note.." id="add-input">
-            <input type="submit" value="Add" id="add-btn">
+          <input
+            type="text"
+            placeholder="Add a new note here.."
+            id="add-input"
+          />
+          <input type="submit" value="Add" id="add-btn" />
         </form>
+      </div>
     </div>
-    </div>
-</body>
-<script src="main.js"></script>
+  </body>
+  <script src="main.js"></script>
 </html>
